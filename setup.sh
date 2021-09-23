@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOT_DIRECTORY="$(HOME)/dotfiles"
+DOT_DIRECTORY="${HOME}/dotfiles"
 DOT_TARBALL="https//github.com/takakiba/dotfiles/tarball/master"
 REMOTE_URL="git@github.com:takakiba/dotfiles.git"
 
