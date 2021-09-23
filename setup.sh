@@ -8,6 +8,35 @@ has() {
     type "$1" > /dev/null 2>&1
 }
 
+usage() {
+    name=`basename $0`
+    cat <<EOF
+Usage:
+    $name [arguments] [command]
+Commands:
+    deploy
+    initialize
+Arguments:
+    -f $(tput setaf 1)** warging **$(tput sgr0) Overwrite dotfiles.
+    -h Print help (this message)
+EOF
+    exit 1
+}
+
+
+while getopts :f:h opt; do
+    case ${opt} in
+        f)
+            OVERWRITE=true
+            ;;
+        h)
+            usage
+            ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+
 if [ ! -d ${DOT_DIRECTORY} ]; then
     echo "Downloading dotfiles..."
     mkdir ${DOT_DIRECTORY}
@@ -52,3 +81,16 @@ initialize() {
     fi
 }
 
+case $command in
+    deploy)
+        link_files
+        ;;
+    init*)
+        initialize
+        ;;
+    *)
+        usage
+        ;;
+esac
+
+exit 0
