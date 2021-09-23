@@ -81,6 +81,9 @@ initialize() {
     fi
 }
 
+command=$1
+[ $# -gt 0 ] && shift
+
 case $command in
     deploy)
         link_files
