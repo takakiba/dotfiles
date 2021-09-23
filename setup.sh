@@ -12,7 +12,7 @@ if [ ! -d ${DOT_DIRECTORY} ]; then
     echo "Downloading dotfiles..."
     mkdir ${DOT_DIRECTORY}
 
-    if type "git" > /dev/null 2&1; then
+    if type "git" > /dev/null 2>&1; then
         git clone --recursive "${REMOTE_URL}" "${DOT_DIRECTORY}"
     else
         curl -fsSLo ${HOME}/dotfiles.tar.gz ${DOT_TARBALL}
