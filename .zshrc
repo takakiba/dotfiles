@@ -41,7 +41,7 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 alias rsync='rsync -ahv --progress'
-if [ -e $(HOME)/zshrc_dev ]; then
+if [ -e ${HOME}/zshrc_dev ]; then
     source ${HOME}/zshrc_dev
 fi
 
