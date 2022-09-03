@@ -27,6 +27,18 @@ fi
 source $DOTFILES/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $DOTFILES/.zsh/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# command history setting
+# File save to
+export HISTFILE=${HOME}/.zsh_history
+# Number saved in memory
+export HISTSIZE=1000
+# Number saved in file
+export SAVEHIST=10000
+# No duplication 
+setopt hist_ignore_dups
+# Recort initial and last
+setopt EXTENDED_HISTORY
+
 # No waring sound
 setopt NO_BEEP
 # Vim-like keybind
