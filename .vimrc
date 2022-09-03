@@ -47,6 +47,7 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 syntax enable
 set number
+set background=dark
 colorscheme iceberg
 set tabstop=4
 set autoindent
