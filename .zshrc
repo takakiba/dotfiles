@@ -5,23 +5,23 @@ export DOTFILES=$HOME/dotfiles
 # export VIMINIT=$DOTFILES/.vimrc
 # export VIMRUNTIME=$DOTFILES/.vim
 
-# make dotfiles dir
-if [ ! -d $DOTFILES ]; then
-    mkdir $DOTFILES
-fi
-
-# install Vundle
-if [ ! -e $HOME/.vim/bundle/Vundle.vim ]; then
-    git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
-fi
-# install zsh-autosuggestions
-if [ ! -e $DOTFILES/.zsh/zsh-autosuggestions ]; then
-    git clone https://github.com/zsh-users/zsh-autosuggestions $DOTFILES/.zsh/zsh-autosuggestions
-fi
-# install zsh-syntax-highlighting
-if [ ! -e $DOTFILES/.zsh/zsh-users/zsh-syntax-highlighting ]; then
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $DOTFILES/.zsh/zsh-users/zsh-syntax-highlighting
-fi
+# # make dotfiles dir
+# if [ ! -d $DOTFILES ]; then
+#     mkdir $DOTFILES
+# fi
+# 
+# # install Vundle
+# if [ ! -e $HOME/.vim/bundle/Vundle.vim ]; then
+#     git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
+# fi
+# # install zsh-autosuggestions
+# if [ ! -e $DOTFILES/.zsh/zsh-autosuggestions ]; then
+#     git clone https://github.com/zsh-users/zsh-autosuggestions $DOTFILES/.zsh/zsh-autosuggestions
+# fi
+# # install zsh-syntax-highlighting
+# if [ ! -e $DOTFILES/.zsh/zsh-users/zsh-syntax-highlighting ]; then
+#     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $DOTFILES/.zsh/zsh-users/zsh-syntax-highlighting
+# fi
 
 # source setting files
 source $DOTFILES/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
