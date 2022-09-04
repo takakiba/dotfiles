@@ -36,3 +36,8 @@ if [ ! -e $DOTFILES/.zsh/zsh-users/zsh-syntax-highlighting ]; then
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $DOTFILES/.zsh/zsh-users/zsh-syntax-highlighting
 fi
 
+# prepare default teminal color setting file
+if [ ! -f ~/term_color ]; then
+    cp $DOTFILES/term_color.template ~/term_color
+fi
+
