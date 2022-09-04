@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 set -u
 
@@ -7,6 +7,7 @@ cd $BASEDIR
 
 for f in .??*; do
     [ "$f" = '.git' ] && continue
+    [ "$f" = '.gitignore' ] && continue
     [ "$f" = '.zsh' ] && continue
 
     ln -snfv ${PWD}/"$f" $HOME/

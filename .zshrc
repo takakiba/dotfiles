@@ -51,14 +51,17 @@ alias rysnc='rsync -ahv --info=progress2'
 autoload -Uz compinit
 compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-zstyle ':completion:*' list-colors 'di=34' 'ln=36' 'ex=32'
+# zstyle ':completion:*' list-colors 'di=34' 'ln=36' 'ex=32'
 setopt COMPLETE_IN_WORD
 
 # ls with colors
-if [ -f $DOTFILES/.colorrc ]; then
-    eval `dircolors $DOTFILES/.colorrc`
-    alias ls='ls --color=auto'
-fi
+# if [ -f $DOTFILES/.colorrc ]; then
+case `uname` in
+    "Linux") eval `dircolors $DOTFILES/.colorrc` && alias ls='ls --color=auto';;
+    "Darwin") eval `gdircolors $DOTFILES/.colorrc` && alias ls='gls --color=auto';;
+esac
+# fi
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # git
 autoload -Uz vcs_info
@@ -74,11 +77,11 @@ precmd () { vcs_info }
 function zle-line-init zle-keymap-select {
     case $KEYMAP in
         vicmd)
-        PROMPT='%F{014}[%n@%m]%f %F{cyan}$vcs_info_msg_0_%f %F{009}CMD%f %# %d
+        PROMPT='%F{006}[%n@%m]%f %F{cyan}$vcs_info_msg_0_%f %F{009}CMD%f %# %d
 %F{100}${VIRTUAL_ENV:+(${VIRTUAL_ENV##*/})}%f%F{028}${CONDA_PREFIX:+(${CONDA_PREFIX##*/})}%f>>'
         ;;
         main|vins)
-        PROMPT='%F{014}[%n@%m]%f %F{cyan}$vcs_info_msg_0_%f %F{011}INS%f %# %d
+        PROMPT='%F{006}[%n@%m]%f %F{cyan}$vcs_info_msg_0_%f %F{011}INS%f %# %d
 %F{100}${VIRTUAL_ENV:+(${VIRTUAL_ENV##*/})}%f%F{028}${CONDA_PREFIX:+(${CONDA_PREFIX##*/})}%f>>'
         ;;
     esac
