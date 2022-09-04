@@ -87,4 +87,13 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
+# load local machine settings
+if [ -f ~/.zshrc_local ]; then
+    source ~/.zshrc_local
+fi
+
+# auto zcompile after modification
+if [ ~/.zshrc -nt ~/.zshrc.zwc ]; then
+    zcompile ~/.zshrc
+fi
 
