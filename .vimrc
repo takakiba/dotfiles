@@ -31,6 +31,7 @@ Plugin 'cohama/lexima.vim'
 Plugin 'cocopon/iceberg.vim'
 " Plugin 'davidhalter/jedi-vim'
 Plugin 'lambdalisue/fern.vim'
+Plugin 'chrisbra/csv.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
