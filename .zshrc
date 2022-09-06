@@ -45,7 +45,7 @@ setopt NO_BEEP
 bindkey -v
 
 # alias for rsync
-alias rysnc='rsync -ahv --info=progress2'
+alias rsync='rsync -ahv --info=progress2'
 
 # completion setting
 autoload -Uz compinit
