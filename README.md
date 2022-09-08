@@ -15,3 +15,5 @@ install.shを実行
 上記ファイルへのリンクを作るのと，
 zshのプラグインをgitから持ってくる
 
+## Promptの色選びに使う画像
+![PromptColor](https://github.com/takakiba/dotfiles/blob/main/color_sample.png)
