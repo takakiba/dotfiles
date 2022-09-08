@@ -2,26 +2,6 @@
 
 # setup path for dotfiles
 export DOTFILES=$HOME/dotfiles
-# export VIMINIT=$DOTFILES/.vimrc
-# export VIMRUNTIME=$DOTFILES/.vim
-
-# # make dotfiles dir
-# if [ ! -d $DOTFILES ]; then
-#     mkdir $DOTFILES
-# fi
-# 
-# # install Vundle
-# if [ ! -e $HOME/.vim/bundle/Vundle.vim ]; then
-#     git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
-# fi
-# # install zsh-autosuggestions
-# if [ ! -e $DOTFILES/.zsh/zsh-autosuggestions ]; then
-#     git clone https://github.com/zsh-users/zsh-autosuggestions $DOTFILES/.zsh/zsh-autosuggestions
-# fi
-# # install zsh-syntax-highlighting
-# if [ ! -e $DOTFILES/.zsh/zsh-users/zsh-syntax-highlighting ]; then
-#     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $DOTFILES/.zsh/zsh-users/zsh-syntax-highlighting
-# fi
 
 # source setting files
 source $DOTFILES/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -55,12 +35,12 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 setopt COMPLETE_IN_WORD
 
 # ls with colors
-# if [ -f $DOTFILES/.colorrc ]; then
 case `uname` in
     "Linux") eval `dircolors $DOTFILES/.colorrc` && alias ls='ls --color=auto';;
     "Darwin") eval `gdircolors $DOTFILES/.colorrc` && alias ls='gls --color=auto';;
 esac
-# fi
+
+# Set color completion
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # git
