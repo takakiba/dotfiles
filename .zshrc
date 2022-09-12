@@ -62,10 +62,12 @@ function zle-line-init zle-keymap-select {
     case $KEYMAP in
         vicmd)
         PROMPT='%F{${terminal_color}}[%n@%m]%f %F{cyan}$vcs_info_msg_0_%f %F{009}CMD%f %# %d
+%F{001}${DIRENV_DIR:+DIRENV@(${DIRENV_DIR})}%f
 %F{100}${VIRTUAL_ENV:+(${VIRTUAL_ENV##*/})}%f%F{028}${CONDA_PREFIX:+(${CONDA_PREFIX##*/})}%f>>'
         ;;
         main|vins)
         PROMPT='%F{${terminal_color}}[%n@%m]%f %F{cyan}$vcs_info_msg_0_%f %F{011}INS%f %# %d
+%F{001}${DIRENV_DIR:+DIRENV@(${DIRENV_DIR})}%f
 %F{100}${VIRTUAL_ENV:+(${VIRTUAL_ENV##*/})}%f%F{028}${CONDA_PREFIX:+(${CONDA_PREFIX##*/})}%f>>'
         ;;
     esac
