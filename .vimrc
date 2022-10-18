@@ -57,5 +57,6 @@ set shiftwidth=4
 set colorcolumn=120
 
 autocmd BufRead,BufNewFile *.sage setfiletype python
+autocmd BufRead,BufNewFile *.envrc setfiletype sh
 " set foldmethod=indent
 
