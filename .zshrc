@@ -62,11 +62,11 @@ function zle-line-init zle-keymap-select {
     APWD=`pwd -P`
     case $KEYMAP in
         vicmd)
-        PROMPT='%F{${terminal_color}}[%n@%m]%f %F{cyan}$vcs_info_msg_0_%f %F{009}CMD%f %# %F{034}${DIRENV_DIR:+${DIRENV_DIR}}%f${APWD#${DIRENV_DIR:+${DIRENV_DIR#-}}}
+        PROMPT='%F{${terminal_color}}[%n@%m]%f %F{cyan}$vcs_info_msg_0_%f %F{009}CMD%f %# %F{034}${DIRENV_DIR:+${DIRENV_DIR$-}}%f${APWD#${DIRENV_DIR:+${DIRENV_DIR#-}}}
 %F{100}${VIRTUAL_ENV:+(${VIRTUAL_ENV##*/})}%f%F{028}${CONDA_PREFIX:+(${CONDA_PREFIX##*/})}%f>>'
         ;;
         main|vins)
-        PROMPT='%F{${terminal_color}}[%n@%m]%f %F{cyan}$vcs_info_msg_0_%f %F{011}INS%f %# %F{034}${DIRENV_DIR:+${DIRENV_DIR}}%f${APWD#${DIRENV_DIR:+${DIRENV_DIR#-}}}
+        PROMPT='%F{${terminal_color}}[%n@%m]%f %F{cyan}$vcs_info_msg_0_%f %F{011}INS%f %# %F{034}${DIRENV_DIR:+${DIRENV_DIR#-}}%f${APWD#${DIRENV_DIR:+${DIRENV_DIR#-}}}
 %F{100}${VIRTUAL_ENV:+(${VIRTUAL_ENV##*/})}%f%F{028}${CONDA_PREFIX:+(${CONDA_PREFIX##*/})}%f>>'
         ;;
     esac
