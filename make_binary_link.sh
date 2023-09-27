@@ -3,7 +3,7 @@
 # directory of original binary
 source_dir="bin_source/*"
 # directory where symbolic links are made
-target_dir="/work/A/ENa/ENa044/shell_test/bin_target"
+target_dir="target_binary_directory"
 # boolean for install or uninstall
 readonly is_uninstall=false
 
