@@ -76,7 +76,8 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 ### set imgcat alias
-alias imgcat='${DOTFILES}/imgcat'
+export PATH=$PATH:$DOTFILES
+# alias imgcat='${DOTFILES}/imgcat'
 
 # load local machine settings
 if [ -f ~/.zshrc_local ]; then
