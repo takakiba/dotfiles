@@ -75,6 +75,9 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
+### set imgcat alias
+alias imgcat='${DOTFILES}/imgcat'
+
 # load local machine settings
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
