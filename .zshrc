@@ -79,6 +79,39 @@ zle -N zle-keymap-select
 export PATH=$PATH:$DOTFILES
 # alias imgcat='${DOTFILES}/imgcat'
 
+### setup preview imgages as movie
+premov() {
+    fps=15.0
+    extension="png"
+
+    while (( $# > 0 ))
+    do
+        case $1 in
+            -f)
+                fps=$2
+                ;;
+            -e)
+                extension=$2
+                ;;
+            -*)
+                echo 'Invalid option'
+                echo 'USAGE: premov [-f FPS -e EXTENSION] target_dir'
+                return 1
+                ;;
+            *)
+                tgtdir=$1
+                ;;
+        esac
+        shift
+    done
+
+    for pngfile in $tgtdir/*.$extension; do
+        # echo $pngfile
+        imgcat $pngfile
+        sleep $((1.0/$fps))s
+    done
+}
+
 # load local machine settings
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
@@ -88,4 +121,7 @@ fi
 if [ ~/.zshrc -nt ~/.zshrc.zwc ]; then
     zcompile ~/.zshrc
 fi
+
+
+
 
