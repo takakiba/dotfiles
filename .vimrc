@@ -57,7 +57,7 @@ set shiftwidth=4
 set colorcolumn=120
 set hlsearch
 
-autocmd BufRead,BufNewFile *.sage set filetype=python
-autocmd BufRead,BufNewFile *.envrc set filetype=sh
+autocmd BufRead,BufNewFile,WinEnter *.sage set filetype=python
+autocmd BufRead,BufNewFile,WinEnter *.envrc set filetype=sh
 " set foldmethod=indent
 
