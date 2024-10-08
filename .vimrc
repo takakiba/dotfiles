@@ -60,4 +60,14 @@ set hlsearch
 autocmd BufRead,BufNewFile,WinEnter *.sage set filetype=python
 autocmd BufRead,BufNewFile,WinEnter *.envrc set filetype=sh
 " set foldmethod=indent
+"
+" capitalize with ctl-l
+function s:toupper_prev_word()
+    let col = getpos('.')[2]
+    let substring = getline('.')[0:col-1]
+    let word = matchstr(substring, '\v(\k(<)@!)*$')
+    return toupper(word)
+endfunction
+
+inoremap <expr> <C-l> "<C-w>" .. <SID>toupper_prev_word()
 
