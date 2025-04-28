@@ -115,6 +115,11 @@ premov() {
     done
 }
 
+# do not record zsh history with error exit
+function zshaddhistory() {
+    [[ $? -eq 0 ]] && return 0 || return 1
+}
+
 # load local machine settings
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
