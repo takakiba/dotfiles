@@ -120,41 +120,6 @@ function zshaddhistory() {
     [[ $? -eq 0 ]] && return 0 || return 1
 }
 
-# get hdf5 file (ver 1.14 only)
-function get_hdf5_1_14() {
-  local base_page="https://support.hdfgroup.org/releases/hdf5/v1_14/index.html"
-  local base_ftp="https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.14"
-  local tmpfile=$(mktemp)
-
-  echo "Fetching available HDF5 1.14.x versions..."
-  curl -s "$base_page" | grep -Eo 'HDF5-1\.14\.[0-9]+' | sed 's/^HDF5-//' | sort -Vr > "$tmpfile"
-
-  local versions=()
-  local i=1
-  while read -r ver; do
-    versions+=("$ver")
-    echo "$i) $ver"
-    ((i++))
-  done < "$tmpfile"
-
-  if [ ${#versions[@]} -eq 0 ]; then
-    echo "No versions found. Exiting."
-    rm "$tmpfile"
-    return 1
-  fi
-
-  read "choice?Select a version to download [1-${#versions[@]}]: "
-  local index=$((choice - 1))
-  local selected="${versions[$index]}"
-  local tarball="hdf5-$selected.tar.gz"
-  local url="$base_ftp/hdf5-$selected/src/$tarball"
-
-  echo "Downloading: $url"
-  curl -LO "$url" && echo "Download completed: $tarball"
-
-  rm "$tmpfile"
-}
-
 # load local machine settings
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
