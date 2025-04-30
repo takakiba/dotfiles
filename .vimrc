@@ -69,5 +69,10 @@ function s:toupper_prev_word()
     return toupper(word)
 endfunction
 
+augroup fileTypeIndent
+    autocmd!
+    autocmd BufNewFile,BufRead *.html setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
+
 inoremap <expr> <C-l> "<C-w>" .. <SID>toupper_prev_word()
 
