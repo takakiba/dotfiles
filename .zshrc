@@ -1,5 +1,9 @@
 # Created by newuser for 5.8.1
 
+# setting for command timer
+zmodload zsh/datetime 2>/dev/null
+typeset -g __START_TIME
+
 # setup path for dotfiles
 export DOTFILES=$HOME/dotfiles
 
@@ -54,7 +58,9 @@ zstyle ':vcs_info:git:*' stagestr "F{magenta}!"
 zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"
 zstyle ':vcs_info:*' formats "%F{cyan}%c%u[%b]%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
-precmd () { vcs_info }
+function vcs_precmd () {
+    vcs_info
+}
 
 # Setting prompt
 terminal_color='002'
@@ -114,6 +120,26 @@ premov() {
         sleep $((1.0/$fps))s
     done
 }
+
+# timer functions
+function preexec() {
+    __START_TIME=$EPOCHSECONDS
+}
+
+function timer_precmd() {
+    if [[ -n $__START_TIME ]]; then
+        local elapsed=$((EPOCHSECONDS - __START_TIME))
+        if (( elapsed > 5 )); then
+            print -P "%F{cyan}Elapsed time: ${elapsed} seconds%f" >&2
+        fi
+        unset __START_TIME
+    fi
+}
+
+# hook for timer function
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd vcs_precmd
+add-zsh-hook precmd timer_precmd
 
 # do not record zsh history with error exit
 function zshaddhistory() {
