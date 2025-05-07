@@ -15,8 +15,6 @@ done
 
 # setup path for dotfiles
 export DOTFILES=$HOME/dotfiles
-# export VIMINIT=$DOTFILES/.vimrc
-# export VIMRUNTIME=$DOTFILES/.vim
 
 # make dotfiles dir
 if [ ! -d $DOTFILES ]; then
@@ -31,9 +29,9 @@ fi
 if [ ! -e $DOTFILES/.zsh/zsh-autosuggestions ]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions $DOTFILES/.zsh/zsh-autosuggestions
 fi
-# install zsh-syntax-highlighting
-if [ ! -e $DOTFILES/.zsh/zsh-users/zsh-syntax-highlighting ]; then
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $DOTFILES/.zsh/zsh-users/zsh-syntax-highlighting
+# install fast-syntax-highlighting
+if [ ! -e $DOTFILES/.zsh/fast-syntax-highlighting ]; then
+    git clone https://github.com/zdharma-continuum/fast-syntax-highlighting $DOTFILES/.zsh/fast-syntax-highlighting
 fi
 
 # prepare default teminal color setting file

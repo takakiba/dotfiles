@@ -9,7 +9,7 @@ export DOTFILES=$HOME/dotfiles
 
 # source setting files
 source $DOTFILES/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $DOTFILES/.zsh/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $DOTFILES/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 # command history setting
 # File save to
@@ -36,7 +36,7 @@ alias printc='for c in {000..255}; do echo -n "\e[38;5;${c}m $c"; [ $(($c%16)) -
 
 # completion setting
 autoload -Uz compinit
-compinit
+compinit -C
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # zstyle ':completion:*' list-colors 'di=34' 'ln=36' 'ex=32'
 setopt COMPLETE_IN_WORD
@@ -53,6 +53,7 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # git
 autoload -Uz vcs_info
 setopt prompt_subst
+zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagestr "F{magenta}!"
 zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"
