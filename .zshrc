@@ -51,43 +51,42 @@ esac
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # git
-autoload -Uz vcs_info
-setopt prompt_subst
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagestr "F{magenta}!"
-zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"
-zstyle ':vcs_info:*' formats "%F{cyan}%c%u[%b]%f"
-zstyle ':vcs_info:*' actionformats '[%b|%a]'
-function vcs_precmd () {
-    vcs_info
-}
+# autoload -Uz vcs_info
+# setopt prompt_subst
+# zstyle ':vcs_info:*' enable git
+# zstyle ':vcs_info:git:*' check-for-changes true
+# zstyle ':vcs_info:git:*' stagestr "F{magenta}!"
+# zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"
+# zstyle ':vcs_info:*' formats "%F{cyan}%c%u[%b]%f"
+# zstyle ':vcs_info:*' actionformats '[%b|%a]'
+# function vcs_precmd () {
+#     vcs_info
+# }
 
 # Setting prompt
 terminal_color='002'
 if [ -f ~/term_color ]; then
     source ~/term_color
 fi
-function zle-line-init zle-keymap-select {
-    APWD=`pwd -P`
-    case $KEYMAP in
-        vicmd)
-        PROMPT='%F{${terminal_color}}[%n@%m]%f %F{cyan}$vcs_info_msg_0_%f %F{009}CMD%f %# %F{034}${DIRENV_DIR:+${DIRENV_DIR$-}}%f${APWD#${DIRENV_DIR:+${DIRENV_DIR#-}}}
-%F{100}${VIRTUAL_ENV:+(${VIRTUAL_ENV##*/})}%f%F{028}${CONDA_PREFIX:+(${CONDA_PREFIX##*/})}%f>>'
-        ;;
-        main|vins)
-        PROMPT='%F{${terminal_color}}[%n@%m]%f %F{cyan}$vcs_info_msg_0_%f %F{011}INS%f %# %F{034}${DIRENV_DIR:+${DIRENV_DIR#-}}%f${APWD#${DIRENV_DIR:+${DIRENV_DIR#-}}}
-%F{100}${VIRTUAL_ENV:+(${VIRTUAL_ENV##*/})}%f%F{028}${CONDA_PREFIX:+(${CONDA_PREFIX##*/})}%f>>'
-        ;;
-    esac
-    zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
+# function zle-line-init zle-keymap-select {
+#     APWD=`pwd -P`
+#     case $KEYMAP in
+#         vicmd)
+#         PROMPT='%F{${terminal_color}}[%n@%m]%f %F{cyan}$vcs_info_msg_0_%f %F{009}CMD%f %# %F{034}${DIRENV_DIR:+${DIRENV_DIR$-}}%f${APWD#${DIRENV_DIR:+${DIRENV_DIR#-}}}
+# %F{100}${VIRTUAL_ENV:+(${VIRTUAL_ENV##*/})}%f%F{028}${CONDA_PREFIX:+(${CONDA_PREFIX##*/})}%f>>'
+#         ;;
+#         main|vins)
+#         PROMPT='%F{${terminal_color}}[%n@%m]%f %F{cyan}$vcs_info_msg_0_%f %F{011}INS%f %# %F{034}${DIRENV_DIR:+${DIRENV_DIR#-}}%f${APWD#${DIRENV_DIR:+${DIRENV_DIR#-}}}
+# %F{100}${VIRTUAL_ENV:+(${VIRTUAL_ENV##*/})}%f%F{028}${CONDA_PREFIX:+(${CONDA_PREFIX##*/})}%f>>'
+#         ;;
+#     esac
+#     zle reset-prompt
+# }
+# zle -N zle-line-init
+# zle -N zle-keymap-select
 
 ### set imgcat alias
 export PATH=$PATH:$DOTFILES
-# alias imgcat='${DOTFILES}/imgcat'
 
 ### setup preview imgages as movie
 premov() {
@@ -139,13 +138,17 @@ function timer_precmd() {
 
 # hook for timer function
 autoload -Uz add-zsh-hook
-add-zsh-hook precmd vcs_precmd
+# add-zsh-hook precmd vcs_precmd
 add-zsh-hook precmd timer_precmd
 
 # do not record zsh history with error exit
 function zshaddhistory() {
     [[ $? -eq 0 ]] && return 0 || return 1
 }
+
+# starship setting
+export STARSHIP_CONFIG=$DOTFILES/starship.toml
+eval "$(starship init zsh)"
 
 # load local machine settings
 if [ -f ~/.zshrc_local ]; then
