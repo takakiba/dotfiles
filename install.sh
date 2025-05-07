@@ -26,12 +26,12 @@ if [ ! -e $HOME/.vim/bundle/Vundle.vim ]; then
     git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 fi
 # install zsh-autosuggestions
-if [ ! -e $DOTFILES/.zsh/zsh-autosuggestions ]; then
-    git clone https://github.com/zsh-users/zsh-autosuggestions $DOTFILES/.zsh/zsh-autosuggestions
+if [ ! -e $DOTFILES/zsh/zsh-autosuggestions ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions $DOTFILES/zsh/zsh-autosuggestions
 fi
 # install fast-syntax-highlighting
-if [ ! -e $DOTFILES/.zsh/fast-syntax-highlighting ]; then
-    git clone https://github.com/zdharma-continuum/fast-syntax-highlighting $DOTFILES/.zsh/fast-syntax-highlighting
+if [ ! -e $DOTFILES/zsh/fast-syntax-highlighting ]; then
+    git clone https://github.com/zdharma-continuum/fast-syntax-highlighting $DOTFILES/zsh/fast-syntax-highlighting
 fi
 
 # prepare default teminal color setting file
