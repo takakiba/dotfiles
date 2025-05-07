@@ -34,9 +34,10 @@ if [ ! -e $DOTFILES/zsh/fast-syntax-highlighting ]; then
     git clone https://github.com/zdharma-continuum/fast-syntax-highlighting $DOTFILES/zsh/fast-syntax-highlighting
 fi
 
-if [ ! -e $DOTFILES/starship ]; then
-    curl -sS https://starship.rs/install.sh | sh -s -- --bin-dir $DOTFILES --yes
-fi
+# starship install
+# if [ ! -e $DOTFILES/starship ]; then
+#     curl -sS https://starship.rs/install.sh | sh -s -- --bin-dir $DOTFILES --yes
+# fi
 
 # prepare default teminal color setting file
 if [ ! -f ~/term_color ]; then
