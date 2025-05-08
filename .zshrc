@@ -146,6 +146,14 @@ function zshaddhistory() {
     [[ $? -eq 0 ]] && return 0 || return 1
 }
 
+# direnv setting
+export EDITOR=vim
+if command -v direnv >/dev/null 2>&1; then
+    eval "$(direnv hook zsh)"
+fi
+
+
+
 # starship setting
 # export STARSHIP_CONFIG=$DOTFILES/starship.toml
 # eval "$(starship init zsh)"
