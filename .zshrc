@@ -9,7 +9,7 @@ export DOTFILES=$HOME/dotfiles
 
 # source setting files
 source $DOTFILES/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $DOTFILES/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+# source $DOTFILES/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 # command history setting
 # File save to
