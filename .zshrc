@@ -171,3 +171,5 @@ fi
 
 
 
+
+. "$HOME/.local/bin/env"

@@ -32,6 +32,7 @@ Plugin 'cocopon/iceberg.vim'
 " Plugin 'davidhalter/jedi-vim'
 " Plugin 'lambdalisue/fern.vim'
 Plugin 'chrisbra/csv.vim'
+Plugin 'vim-python/python-syntax'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -75,4 +76,6 @@ augroup fileTypeIndent
 augroup END
 
 inoremap <expr> <C-l> "<C-w>" .. <SID>toupper_prev_word()
+
+let g:python_highlight_all = 1
 
