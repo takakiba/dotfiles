@@ -152,8 +152,6 @@ if command -v direnv >/dev/null 2>&1; then
     eval "$(direnv hook zsh)"
 fi
 
-
-
 # starship setting
 # export STARSHIP_CONFIG=$DOTFILES/starship.toml
 # eval "$(starship init zsh)"
@@ -168,8 +166,3 @@ if [ ~/.zshrc -nt ~/.zshrc.zwc ]; then
     zcompile ~/.zshrc
 fi
 
-
-
-
-
-. "$HOME/.local/bin/env"
