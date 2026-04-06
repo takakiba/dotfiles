@@ -46,7 +46,7 @@ fi
 #
 # install uv
 if [ ! -e $HOME/.local/bin/uv ]; then
-    curl -LsSf https://astral.sh/uv/install.sh | sh
+    curl -LsSf https://astral.sh/uv/install.sh | env UV_NO_MODIFY_PATH=1 sh 
 fi
 
 # prepare default teminal color setting file
