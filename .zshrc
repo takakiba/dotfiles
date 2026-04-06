@@ -4,6 +4,9 @@
 zmodload zsh/datetime 2>/dev/null
 typeset -g __START_TIME
 
+# remove duplication of path
+typeset -U path PATH
+
 # setup path for dotfiles
 export DOTFILES=$HOME/dotfiles
 
@@ -35,16 +38,22 @@ alias rsync='rsync -ahvc --info=progress2 --append-verify'
 alias printc='for c in {000..255}; do echo -n "\e[38;5;${c}m $c"; [ $(($c%16)) -eq 15 ] && echo;done'
 
 # completion setting
-autoload -Uz compinit
-compinit -C
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # zstyle ':completion:*' list-colors 'di=34' 'ln=36' 'ex=32'
 setopt COMPLETE_IN_WORD
 
 # ls with colors
-case `uname` in
-    "Linux") eval `dircolors $DOTFILES/.colorrc` && alias ls='ls --color=auto';;
-    "Darwin") eval `gdircolors $DOTFILES/.colorrc` && alias ls='gls --color=auto';;
+case "$(uname)" in
+    Linux) 
+        eval "$(dircolors "$DOTFILES/.colorrc")"
+        alias ls='ls --color=auto'
+        ;;
+    Darwin) 
+        if command -v gdircolors >/dev/null 2>&1; then
+            eval "$(gdircolors "$DOTFILES/.colorrc")"
+            alias ls='gls --color=auto'
+        fi
+        ;;
 esac
 
 # Set color completion
@@ -69,7 +78,7 @@ if [ -f ~/term_color ]; then
     source ~/term_color
 fi
 function zle-line-init zle-keymap-select {
-    APWD=`pwd -P`
+    APWD=$PWD
     case $KEYMAP in
         vicmd)
         PROMPT='%F{${terminal_color}}[%n@%m]%f %F{cyan}$vcs_info_msg_0_%f %F{009}CMD%f %# %F{034}${DIRENV_DIR:+${DIRENV_DIR$-}}%f${APWD#${DIRENV_DIR:+${DIRENV_DIR#-}}}
@@ -86,7 +95,8 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 ### set imgcat alias
-export PATH=$PATH:$DOTFILES
+# export PATH=$PATH:$DOTFILES
+path+=($DOTFILES)
 
 ### setup preview imgages as movie
 premov() {
@@ -143,7 +153,7 @@ add-zsh-hook precmd timer_precmd
 
 # do not record zsh history with error exit
 function zshaddhistory() {
-    [[ $? -eq 0 ]] && return 0 || return 1
+    return $(( $? != 0 ))
 }
 
 # direnv setting
@@ -152,17 +162,26 @@ if command -v direnv >/dev/null 2>&1; then
     eval "$(direnv hook zsh)"
 fi
 
-# starship setting
-# export STARSHIP_CONFIG=$DOTFILES/starship.toml
-# eval "$(starship init zsh)"
+# uv setting
+source $HOME/.local/bin/env
+if [[ ! -f ~/.zsh/completions/_uv || $(command -v uv) -nt ~/.zsh/completions/_uv ]]; then
+    uv generate-shell-completion zsh > ~/.zsh/completions/_uv
+fi
+fpath=(~/.zsh/completions $fpath)
 
 # load local machine settings
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi
 
+# compinit load
+autoload -Uz compinit
+compinit -C
+
 # auto zcompile after modification
 if [ ~/.zshrc -nt ~/.zshrc.zwc ]; then
     zcompile ~/.zshrc
 fi
+
+export PATH
 

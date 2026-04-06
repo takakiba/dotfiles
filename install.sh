@@ -16,6 +16,11 @@ done
 # setup path for dotfiles
 export DOTFILES=$HOME/dotfiles
 
+# for completion
+if [ ! -d $HOME/.zsh/completions ]; then
+    mkdir -p $HOME/.zsh/completions
+fi
+
 # make dotfiles dir
 if [ ! -d $DOTFILES ]; then
     mkdir $DOTFILES
@@ -38,6 +43,11 @@ fi
 # if [ ! -e $DOTFILES/starship ]; then
 #     curl -sS https://starship.rs/install.sh | sh -s -- --bin-dir $DOTFILES --yes
 # fi
+#
+# install uv
+if [ ! -e $HOME/.local/bin/uv ]; then
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+fi
 
 # prepare default teminal color setting file
 if [ ! -f ~/term_color ]; then
