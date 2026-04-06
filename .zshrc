@@ -96,7 +96,10 @@ zle -N zle-keymap-select
 
 ### set imgcat alias
 # export PATH=$PATH:$DOTFILES
-path+=($DOTFILES)
+path+=(
+    $DOTFILES
+    $HOME/.local/bin
+)
 
 ### setup preview imgages as movie
 premov() {
