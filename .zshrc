@@ -181,10 +181,8 @@ fi
 autoload -Uz compinit
 compinit -C
 
-# auto zcompile after modification
-if [ ~/.zshrc -nt ~/.zshrc.zwc ]; then
-    zcompile ~/.zshrc
-fi
-
-export PATH
+# # auto zcompile after modification
+# if [ ~/.zshrc -nt ~/.zshrc.zwc ]; then
+#     zcompile ~/.zshrc
+# fi
 
