@@ -16,7 +16,7 @@ source $DOTFILES/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # command history setting
 # File save to
-export HISTFILE=${HOME}/.zsh_history
+export HISTFILE=$HOME/.zsh_history
 # Number saved in memory
 export HISTSIZE=1000
 # Number saved in file
@@ -74,8 +74,8 @@ function vcs_precmd () {
 
 # Setting prompt
 terminal_color='002'
-if [ -f ~/term_color ]; then
-    source ~/term_color
+if [ -f $HOME/term_color ]; then
+    source $HOME/term_color
 fi
 function zle-line-init zle-keymap-select {
     APWD=$PWD
@@ -94,11 +94,10 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-### set imgcat alias
-# export PATH=$PATH:$DOTFILES
+### set path
 path+=(
-    $DOTFILES
-    $HOME/.local/bin
+    $DOTFILES # for imgcat
+    $HOME/.local/bin # for uv
 )
 
 ### setup preview imgages as movie
@@ -166,15 +165,14 @@ if command -v direnv >/dev/null 2>&1; then
 fi
 
 # uv setting
-# source $HOME/.local/bin/env
-if [[ ! -f ~/.zsh/completions/_uv || $(command -v uv) -nt ~/.zsh/completions/_uv ]]; then
-    uv generate-shell-completion zsh > ~/.zsh/completions/_uv
+if [[ ! -f $HOME/.zsh/completions/_uv || $(command -v uv) -nt $HOME/.zsh/completions/_uv ]]; then
+    uv generate-shell-completion zsh > $HOME/.zsh/completions/_uv
 fi
-fpath=(~/.zsh/completions $fpath)
+fpath=($HOME/.zsh/completions $fpath)
 
 # load local machine settings
-if [ -f ~/.zshrc_local ]; then
-    source ~/.zshrc_local
+if [ -f $HOME/.zshrc_local ]; then
+    source $HOME/.zshrc_local
 fi
 
 # compinit load
