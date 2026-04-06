@@ -166,7 +166,7 @@ if command -v direnv >/dev/null 2>&1; then
 fi
 
 # uv setting
-source $HOME/.local/bin/env
+# source $HOME/.local/bin/env
 if [[ ! -f ~/.zsh/completions/_uv || $(command -v uv) -nt ~/.zsh/completions/_uv ]]; then
     uv generate-shell-completion zsh > ~/.zsh/completions/_uv
 fi
