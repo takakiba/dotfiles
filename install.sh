@@ -47,6 +47,8 @@ fi
 # install uv
 if [ ! -e $HOME/.local/bin/uv ]; then
     curl -LsSf https://astral.sh/uv/install.sh | env UV_NO_MODIFY_PATH=1 sh 
+    mkdir -p $HOME/.zsh/completions
+    $HOME/.local/bin/uv generate-shell-completion zsh > $HOME/.zsh/completions/_uv 2>/dev/null || true
 fi
 
 # prepare default teminal color setting file
