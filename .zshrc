@@ -30,7 +30,7 @@ setopt NO_BEEP
 bindkey -v
 
 # alias for rsync
-alias rsync='rsync -ahvc --info=progress2 --append-verify'
+alias rsync='rsync -ahvc --info=progress --append-verify'
 
 # alias for ls detail
 alias ll='ls -lhtr'
